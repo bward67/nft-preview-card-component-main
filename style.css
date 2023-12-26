@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap");
+
+/*Weights: 300, 400, 600 */
+:root {
+  --soft-blue: hsl(215, 51%, 70%);
+  --cyan: hsl(178, 100%, 50%);
+
+  --very-dark-blue-main-BG: hsl(217, 54%, 11%);
+  --very-dark-blue-card-BG: hsl(216, 50%, 16%);
+  --very-dark-blue-line: hsl(215, 32%, 27%);
+  --white: hsl(0, 0%, 100%);
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+html {
+  font-family: "Outfit", sans-serif;
+  font-size: 18px;
+}
+body {
+  background-color: var(--very-dark-blue-main-BG);
+  padding: 6rem 2rem;
+}
+img {
+  max-width: 100%;
+}
+h1,
+p span {
+  color: var(--white);
+}
+h1 {
+  margin: 1rem 0;
+}
+h1:hover,
+p span:hover {
+  color: var(--cyan);
+}
+p {
+  line-height: 30px;
+}
+
+.container {
+  background-color: var(--very-dark-blue-card-BG);
+  padding: 1.5rem;
+  color: var(--soft-blue);
+  margin: 0 auto;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+/*HOVER STATE FOR MAIN IMAGE*/
+.container .main-image {
+  position: relative; /*This is the parent of the cube and the div with the eye icon so we set it as position relative and we will set the div the eye icon is in & the icon itself as position absolute*/
+}
+.container .main-image img {
+  /*this is the img of the cube*/
+  width: 100%; /*DON'T NEED THIS??*/
+  margin: 0 auto; /*DON'T NEED THIS??*/ /*to center it within the container*/
+  border-radius: 0.5rem;
+}
+.container .main-image div {
+  /*this is the box that the eye icon is in*/
+  background-color: hsl(
+    178,
+    100%,
+    50%,
+    40%
+  ); /*the last number here is the opacity*/
+  border-radius: 0.5rem;
+  width: 100%; /*MUST have this */
+  height: calc(100% - 4px); /*if you put auto here it will not show up*/
+  /*so that the box is the exact same size as the cube's box*/
+  transition: opacity 0.3s ease-in-out; /*this of course is not necessary BUT interesting how we put it on the parent of the eye icon - div - and NOT on the div:hover*/
+  position: absolute; /*we will have to set the actual icon itself as absolute as well*/
+  top: 0;
+  z-index: 5; /*DON'T NEED THIS??*/
+  opacity: 0; /*MUST have this and the one of opacity: 1 on the cube or you will see this cyan bg box at all times and not just when we hover over it*/
+}
+.container .main-image div:hover {
+  /*interesting - we put the :hover on the div which is the parent of the eye icon and NOT on the cube image itself bUT I guess it IS the div with the eye icon in it which we are hovering over*/
+  cursor: pointer;
+  opacity: 1; /*MUST have this or nothing will happen when we hover over the cube*/
+}
+.container .main-image div img {
+  /*this is the actual eye icon itself*/
+  position: absolute;
+  left: 50%; /*I put right: 42%*/
+  top: 50%; /*I put top: 42%*/
+  transform: translate(
+    -50%,
+    -50%
+  ); /*DON'T NEED THIS if you put 42% on the top and right above*/
+  max-width: 15%; /*otherwise the eye is 100% because up above we asked ALL imgs to be max-width: 100%*/
+}
+
+.container article ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  list-style: none;
+}
+.container article ul li img {
+  margin-right: 0.5rem;
+}
+.container article ul li:first-child {
+  color: var(--cyan);
+}
+.container .avatar {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--soft-blue);
+}
+.container .avatar img {
+  width: 15%;
+  border: solid 1px var(--white);
+  border-radius: 50%;
+  margin: 1rem 1rem 0 0;
+}
+
+.attribution {
+  color: var(--white);
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+@media (min-width: 500px) {
+  .container {
+    max-width: 380px;
+  }
+}
